@@ -1,0 +1,368 @@
+{
+  "versao": "0.5.4",
+  "tipo": "casos_sinteticos; sem SNMP/SET",
+  "modelo": "gpt-5.4-mini-2026-03-17",
+  "acertos": 1,
+  "total": 6,
+  "casos": [
+    {
+      "caso": "diagnostico_coerente",
+      "esperado": "aprovar",
+      "acerto": true,
+      "revisao": {
+        "modelo_solicitado": "gpt-5.4-mini-2026-03-17",
+        "proposta_id": "fe0615fb479e85cca57b818933af046f7f8eec6cc6b0574abce2c22756eab6c7",
+        "tentativas": [
+          {
+            "numero": 1,
+            "status": "concluida"
+          }
+        ],
+        "status": "concluida",
+        "parecer": {
+          "acao_avaliada": "investigar",
+          "adequacao_objetivo": "adequada",
+          "avaliacao_factual": "sem_erro_identificado",
+          "coerencia_acao_justificativa": "coerente",
+          "dados_faltantes": [],
+          "decisao": "aprovar",
+          "erros_factuais": [],
+          "evidencias": [
+            "E1",
+            "I0"
+          ],
+          "justificativa": "A a├º├úo \"investigar\" est├í alinhada ao pedido do operador para identificar problemas observados sem inferir causa f├¡sica. A proposta reconhece corretamente os achados derivados de E1/I0: cliente DHCP desabilitado em ether1, aus├¬ncia de IPv4 ativo, aus├¬ncia de rota padr├úo IPv4 em main e DNS upstream vazio com DoH n├úo configurado. N├úo h├í infer├¬ncia causal indevida nem contradi├º├úo factual. A men├º├úo a \"reabilita├º├úo do cliente\" ├® interpret├ível como verifica├º├úo de estado desejado, mas n├úo altera a a├º├úo operacional escolhida. Como n├úo h├í corre├º├Áes de cat├ílogo aplic├íveis e os limites foram respeitados, a proposta pode ser apresentada ao humano, permanecendo a execu├º├úo bloqueada at├® consentimento.",
+          "proposta_id": "fe0615fb479e85cca57b818933af046f7f8eec6cc6b0574abce2c22756eab6c7"
+        },
+        "contingencia_elegivel": false,
+        "modelo_retornado": "gpt-5.4-mini-2026-03-17",
+        "response_id": "resp_058f253e89d53619016ad64971569487d28a2ae5d7d387857e",
+        "usage": {
+          "input_tokens": 2447,
+          "input_tokens_details": {
+            "cache_write_tokens": 0,
+            "cached_tokens": 0
+          },
+          "output_tokens": 428,
+          "output_tokens_details": {
+            "reasoning_tokens": 144
+          },
+          "total_tokens": 2875
+        },
+        "conteudo_original": "{\"acao_avaliada\":\"investigar\",\"adequacao_objetivo\":\"adequada\",\"avaliacao_factual\":\"sem_erro_identificado\",\"coerencia_acao_justificativa\":\"coerente\",\"dados_faltantes\":[],\"decisao\":\"aprovar\",\"erros_factuais\":[],\"evidencias\":[\"E1\",\"I0\"],\"justificativa\":\"A a├º├úo \\\"investigar\\\" est├í alinhada ao pedido do operador para identificar problemas observados sem inferir causa f├¡sica. A proposta reconhece corretamente os achados derivados de E1/I0: cliente DHCP desabilitado em ether1, aus├¬ncia de IPv4 ativo, aus├¬ncia de rota padr├úo IPv4 em main e DNS upstream vazio com DoH n├úo configurado. N├úo h├í infer├¬ncia causal indevida nem contradi├º├úo factual. A men├º├úo a \\\"reabilita├º├úo do cliente\\\" ├® interpret├ível como verifica├º├úo de estado desejado, mas n├úo altera a a├º├úo operacional escolhida. Como n├úo h├í corre├º├Áes de cat├ílogo aplic├íveis e os limites foram respeitados, a proposta pode ser apresentada ao humano, permanecendo a execu├º├úo bloqueada at├® consentimento.\" ,\"proposta_id\":\"fe0615fb479e85cca57b818933af046f7f8eec6cc6b0574abce2c22756eab6c7\"}",
+        "duracao_s": 3.813
+      }
+    },
+    {
+      "caso": "confunde_link_com_ip",
+      "esperado": "rejeitar",
+      "acerto": false,
+      "revisao": {
+        "modelo_solicitado": "gpt-5.4-mini-2026-03-17",
+        "proposta_id": "b11b778b2da2355f37ee5169178ba2cd8c972a306b34a9a2cfc01705a8a3b0d2",
+        "tentativas": [
+          {
+            "numero": 1,
+            "status": "parecer_inconsistente",
+            "http": null,
+            "codigo_api": null
+          }
+        ],
+        "status": "parecer_inconsistente",
+        "parecer": {
+          "acao_avaliada": "investigar",
+          "adequacao_objetivo": "adequada",
+          "avaliacao_factual": "erros_identificados",
+          "coerencia_acao_justificativa": "coerente",
+          "dados_faltantes": [],
+          "decisao": "rejeitar",
+          "erros_factuais": [
+            {
+              "correcao": "A evid├¬ncia I0 indica ether1 com admin_status=1 e oper_status=1, portanto a afirma├º├úo de que 'a ether1 est├í sem link f├¡sico' est├í incorreta; o estado observado ├® de link up.",
+              "evidencias": [
+                "I0"
+              ],
+              "trecho": "\"resumo\":\"A ether1 esta sem link fisico.\""
+            }
+          ],
+          "evidencias": [
+            "E1",
+            "I0"
+          ],
+          "justificativa": "A a├º├úo 'investigar' ├® compat├¡vel com o pedido do operador para identificar problemas observados sem inferir causa f├¡sica. Por├®m h├í erro factual expl├¡cito no resumo ao afirmar aus├¬ncia de link f├¡sico em ether1, o que contradiz I0 (oper_status=1 com admin_status=1). Como h├í erro identificado na prosa, a proposta deve ser rejeitada. Os demais itens D0-D3 apenas descrevem estados observados em E1/I0 e n├úo exigem corre├º├úo no cat├ílogo; a limita├º├úo sobre n├úo testar DNS dos PCs tamb├®m ├® aceit├ível.",
+          "proposta_id": "b11b778b2da2355f37ee5169178ba2cd8c972a306b34a9a2cfc01705a8a3b0d2"
+        },
+        "contingencia_elegivel": false,
+        "modelo_retornado": "gpt-5.4-mini-2026-03-17",
+        "response_id": "resp_032e3934ab155ac5016ad64974f1ac87d2be44ef2fbad05f3c",
+        "usage": {
+          "input_tokens": 2430,
+          "input_tokens_details": {
+            "cache_write_tokens": 0,
+            "cached_tokens": 0
+          },
+          "output_tokens": 583,
+          "output_tokens_details": {
+            "reasoning_tokens": 255
+          },
+          "total_tokens": 3013
+        },
+        "conteudo_original": "{\"acao_avaliada\":\"investigar\",\"adequacao_objetivo\":\"adequada\",\"avaliacao_factual\":\"erros_identificados\",\"coerencia_acao_justificativa\":\"coerente\",\"dados_faltantes\":[],\"decisao\":\"rejeitar\",\"erros_factuais\":[{\"correcao\":\"A evid├¬ncia I0 indica ether1 com admin_status=1 e oper_status=1, portanto a afirma├º├úo de que 'a ether1 est├í sem link f├¡sico' est├í incorreta; o estado observado ├® de link up.\",\"evidencias\":[\"I0\"],\"trecho\":\"\\\"resumo\\\":\\\"A ether1 esta sem link fisico.\\\"\"}],\"evidencias\":[\"E1\",\"I0\"],\"justificativa\":\"A a├º├úo 'investigar' ├® compat├¡vel com o pedido do operador para identificar problemas observados sem inferir causa f├¡sica. Por├®m h├í erro factual expl├¡cito no resumo ao afirmar aus├¬ncia de link f├¡sico em ether1, o que contradiz I0 (oper_status=1 com admin_status=1). Como h├í erro identificado na prosa, a proposta deve ser rejeitada. Os demais itens D0-D3 apenas descrevem estados observados em E1/I0 e n├úo exigem corre├º├úo no cat├ílogo; a limita├º├úo sobre n├úo testar DNS dos PCs tamb├®m ├® aceit├ível.\",\"proposta_id\":\"b11b778b2da2355f37ee5169178ba2cd8c972a306b34a9a2cfc01705a8a3b0d2\"}",
+        "motivo_inconsistencia": "Trecho criticado nao consta na proposta Qwen",
+        "codigo_api": null,
+        "duracao_s": 4.758
+      }
+    },
+    {
+      "caso": "rota_padrao_vira_tabela_vazia",
+      "esperado": "rejeitar",
+      "acerto": false,
+      "revisao": {
+        "modelo_solicitado": "gpt-5.4-mini-2026-03-17",
+        "proposta_id": "ebdc7e091e6aec0b685edb13752d7f851e84cf1795e2c8ba0e1469e03d2e9800",
+        "tentativas": [
+          {
+            "numero": 1,
+            "status": "parecer_inconsistente",
+            "http": null,
+            "codigo_api": null
+          }
+        ],
+        "status": "parecer_inconsistente",
+        "parecer": {
+          "acao_avaliada": "investigar",
+          "adequacao_objetivo": "adequada",
+          "avaliacao_factual": "erros_identificados",
+          "coerencia_acao_justificativa": "coerente",
+          "dados_faltantes": [],
+          "decisao": "rejeitar",
+          "erros_factuais": [
+            {
+              "correcao": "N├úo ├® poss├¡vel afirmar que a tabela main est├í vazia nem que n├úo existe qualquer caminho externo; o dado fornecido indica apenas default_routes=0, o que n├úo prova aus├¬ncia total de caminhos.",
+              "evidencias": [
+                "E1",
+                "I0"
+              ],
+              "trecho": "\"A tabela main esta vazia e nao existe qualquer caminho externo.\""
+            }
+          ],
+          "evidencias": [
+            "E1",
+            "I0"
+          ],
+          "justificativa": "A a├º├úo \"investigar\" est├í alinhada ao pedido do operador de identificar problemas observados sem inferir causa f├¡sica. A proposta tamb├®m reconhece os achados D0-D3 com base em E1. Por├®m h├í erro factual no resumo ao concluir que a tabela main est├í vazia e que n├úo existe qualquer caminho externo; o material de I0 e os limites informados dizem que default_routes=0 n├úo prova isso. Como a auditoria factual encontrou erro identificado, a proposta deve ser rejeitada mesmo que a a├º├úo em si seja adequada.",
+          "proposta_id": "ebdc7e091e6aec0b685edb13752d7f851e84cf1795e2c8ba0e1469e03d2e9800"
+        },
+        "contingencia_elegivel": false,
+        "modelo_retornado": "gpt-5.4-mini-2026-03-17",
+        "response_id": "resp_0896c331926a6361016ad64979893887d2b65c37cb7bcbc2f1",
+        "usage": {
+          "input_tokens": 2433,
+          "input_tokens_details": {
+            "cache_write_tokens": 0,
+            "cached_tokens": 0
+          },
+          "output_tokens": 495,
+          "output_tokens_details": {
+            "reasoning_tokens": 178
+          },
+          "total_tokens": 2928
+        },
+        "conteudo_original": "{\"acao_avaliada\":\"investigar\",\"adequacao_objetivo\":\"adequada\",\"avaliacao_factual\":\"erros_identificados\",\"coerencia_acao_justificativa\":\"coerente\",\"dados_faltantes\":[],\"decisao\":\"rejeitar\",\"erros_factuais\":[{\"correcao\":\"N├úo ├® poss├¡vel afirmar que a tabela main est├í vazia nem que n├úo existe qualquer caminho externo; o dado fornecido indica apenas default_routes=0, o que n├úo prova aus├¬ncia total de caminhos.\",\"evidencias\":[\"E1\",\"I0\"],\"trecho\":\"\\\"A tabela main esta vazia e nao existe qualquer caminho externo.\\\"\"}],\"evidencias\":[\"E1\",\"I0\"],\"justificativa\":\"A a├º├úo \\\"investigar\\\" est├í alinhada ao pedido do operador de identificar problemas observados sem inferir causa f├¡sica. A proposta tamb├®m reconhece os achados D0-D3 com base em E1. Por├®m h├í erro factual no resumo ao concluir que a tabela main est├í vazia e que n├úo existe qualquer caminho externo; o material de I0 e os limites informados dizem que default_routes=0 n├úo prova isso. Como a auditoria factual encontrou erro identificado, a proposta deve ser rejeitada mesmo que a a├º├úo em si seja adequada.\",\"proposta_id\":\"ebdc7e091e6aec0b685edb13752d7f851e84cf1795e2c8ba0e1469e03d2e9800\"}",
+        "motivo_inconsistencia": "Trecho criticado nao consta na proposta Qwen",
+        "codigo_api": null,
+        "duracao_s": 3.285
+      }
+    },
+    {
+      "caso": "dns_do_pc_sem_teste",
+      "esperado": "rejeitar",
+      "acerto": false,
+      "revisao": {
+        "modelo_solicitado": "gpt-5.4-mini-2026-03-17",
+        "proposta_id": "1bd6cf8a1c235ae9ef3dc41744303d0702c35773e935cd0428db66eb15efe83c",
+        "tentativas": [
+          {
+            "numero": 1,
+            "status": "parecer_inconsistente",
+            "http": null,
+            "codigo_api": null
+          }
+        ],
+        "status": "parecer_inconsistente",
+        "parecer": {
+          "acao_avaliada": "investigar",
+          "adequacao_objetivo": "adequada",
+          "avaliacao_factual": "erros_identificados",
+          "coerencia_acao_justificativa": "coerente",
+          "dados_faltantes": [],
+          "decisao": "rejeitar",
+          "erros_factuais": [
+            {
+              "correcao": "Os dados n├úo permitem concluir que os computadores estejam incapazes de resolver nomes DNS; apenas indicam aus├¬ncia de DNS upstream configurado e DoH desabilitado, sem teste fim a fim nos PCs.",
+              "evidencias": [
+                "E1",
+                "I0"
+              ],
+              "trecho": "\"Os computadores estao incapazes de resolver nomes DNS.\""
+            },
+            {
+              "correcao": "A aus├¬ncia de IPv4 ativo em ether1 n├úo prova, por si s├│, falha f├¡sica ou indisponibilidade total; ├® apenas um problema observado no estado atual.",
+              "evidencias": [
+                "E1",
+                "I0"
+              ],
+              "trecho": "\"Sem IPv4 ativo em ether1.\""
+            }
+          ],
+          "evidencias": [
+            "E1",
+            "I0"
+          ],
+          "justificativa": "A a├º├úo \"investigar\" est├í no escopo e combina com a pergunta do operador, que pede identificar problemas observados sem inferir causa f├¡sica. Por├®m h├í erro factual no resumo: a proposta extrapola os dados ao afirmar incapacidade dos PCs de resolver DNS, o que n├úo foi testado. Os demais itens de problema observados (cliente DHCP desabilitado, sem IPv4 ativo, sem rota padr├úo ativa e DNS upstream ausente) est├úo alinhados com as evid├¬ncias fornecidas, como observa├º├Áes de estado, n├úo como causa f├¡sica. Como h├í erro factual, a proposta deve ser rejeitada.",
+          "proposta_id": "1bd6cf8a1c235ae9ef3dc41744303d0702c35773e935cd0428db66eb15efe83c"
+        },
+        "contingencia_elegivel": false,
+        "modelo_retornado": "gpt-5.4-mini-2026-03-17",
+        "response_id": "resp_0f35cafb2b2b50e5016ad6497cd45887d2a3b3dbca28d2e4c5",
+        "usage": {
+          "input_tokens": 2426,
+          "input_tokens_details": {
+            "cache_write_tokens": 0,
+            "cached_tokens": 0
+          },
+          "output_tokens": 621,
+          "output_tokens_details": {
+            "reasoning_tokens": 235
+          },
+          "total_tokens": 3047
+        },
+        "conteudo_original": "{\"acao_avaliada\":\"investigar\",\"adequacao_objetivo\":\"adequada\",\"avaliacao_factual\":\"erros_identificados\",\"coerencia_acao_justificativa\":\"coerente\",\"dados_faltantes\":[],\"decisao\":\"rejeitar\",\"erros_factuais\":[{\"correcao\":\"Os dados n├úo permitem concluir que os computadores estejam incapazes de resolver nomes DNS; apenas indicam aus├¬ncia de DNS upstream configurado e DoH desabilitado, sem teste fim a fim nos PCs.\",\"evidencias\":[\"E1\",\"I0\"],\"trecho\":\"\\\"Os computadores estao incapazes de resolver nomes DNS.\\\"\"},{\"correcao\":\"A aus├¬ncia de IPv4 ativo em ether1 n├úo prova, por si s├│, falha f├¡sica ou indisponibilidade total; ├® apenas um problema observado no estado atual.\",\"evidencias\":[\"E1\",\"I0\"],\"trecho\":\"\\\"Sem IPv4 ativo em ether1.\\\"\"}],\"evidencias\":[\"E1\",\"I0\"],\"justificativa\":\"A a├º├úo \\\"investigar\\\" est├í no escopo e combina com a pergunta do operador, que pede identificar problemas observados sem inferir causa f├¡sica. Por├®m h├í erro factual no resumo: a proposta extrapola os dados ao afirmar incapacidade dos PCs de resolver DNS, o que n├úo foi testado. Os demais itens de problema observados (cliente DHCP desabilitado, sem IPv4 ativo, sem rota padr├úo ativa e DNS upstream ausente) est├úo alinhados com as evid├¬ncias fornecidas, como observa├º├Áes de estado, n├úo como causa f├¡sica. Como h├í erro factual, a proposta deve ser rejeitada.\",\"proposta_id\":\"1bd6cf8a1c235ae9ef3dc41744303d0702c35773e935cd0428db66eb15efe83c\"}",
+        "motivo_inconsistencia": "Trecho criticado nao consta na proposta Qwen",
+        "codigo_api": null,
+        "duracao_s": 4.4
+      }
+    },
+    {
+      "caso": "defeito_fisico_inventado",
+      "esperado": "rejeitar",
+      "acerto": false,
+      "revisao": {
+        "modelo_solicitado": "gpt-5.4-mini-2026-03-17",
+        "proposta_id": "6877a794cdcdf52d87b64a45b08afd21f9585a8c9b70f7dcf2e6c5f76dec7b85",
+        "tentativas": [
+          {
+            "numero": 1,
+            "status": "parecer_inconsistente",
+            "http": null,
+            "codigo_api": null
+          }
+        ],
+        "status": "parecer_inconsistente",
+        "parecer": {
+          "acao_avaliada": "investigar",
+          "adequacao_objetivo": "adequada",
+          "avaliacao_factual": "erros_identificados",
+          "coerencia_acao_justificativa": "coerente",
+          "dados_faltantes": [],
+          "decisao": "rejeitar",
+          "erros_factuais": [
+            {
+              "correcao": "oper_status=2 em ether5 nao comprova defeito fisico nem cabo ausente; no cenario informado, ether5 nao exige link e esse estado nao e prova de falha.",
+              "evidencias": [
+                "I0"
+              ],
+              "trecho": "\"A ether5 apresenta defeito fisico comprovado porque oper_status=2.\""
+            }
+          ],
+          "evidencias": [
+            "E1",
+            "I0"
+          ],
+          "justificativa": "A acao investigacao e compat├¡vel com a pergunta para identificar problemas observados sem inferir causa fisica. Os itens D0-D3 estao alinhados com E1 e I0, e as limitacoes reconhecem corretamente que nao ha teste fim a fim nem prova de causa fisica. Porem, o resumo introduz uma inferencia causal/fisica nao sustentada sobre ether5, contrariando o proprio contexto de laboratorio (ether5 sem exigencia de link). Como ha erro factual, a proposta deve ser rejeitada mesmo com acao investigativa. Nao faltam dados indispensaveis para avaliar a proposta; o problema e a contradicao factual.",
+          "proposta_id": "6877a794cdcdf52d87b64a45b08afd21f9585a8c9b70f7dcf2e6c5f76dec7b85"
+        },
+        "contingencia_elegivel": false,
+        "modelo_retornado": "gpt-5.4-mini-2026-03-17",
+        "response_id": "resp_003700971512efe6016ad64981592887d2a1c78d9ad1a7fca1",
+        "usage": {
+          "input_tokens": 2437,
+          "input_tokens_details": {
+            "cache_write_tokens": 0,
+            "cached_tokens": 0
+          },
+          "output_tokens": 421,
+          "output_tokens_details": {
+            "reasoning_tokens": 74
+          },
+          "total_tokens": 2858
+        },
+        "conteudo_original": "{\"acao_avaliada\":\"investigar\",\"adequacao_objetivo\":\"adequada\",\"avaliacao_factual\":\"erros_identificados\",\"coerencia_acao_justificativa\":\"coerente\",\"dados_faltantes\":[],\"decisao\":\"rejeitar\",\"erros_factuais\":[{\"correcao\":\"oper_status=2 em ether5 nao comprova defeito fisico nem cabo ausente; no cenario informado, ether5 nao exige link e esse estado nao e prova de falha.\",\"evidencias\":[\"I0\"],\"trecho\":\"\\\"A ether5 apresenta defeito fisico comprovado porque oper_status=2.\\\"\"}],\"evidencias\":[\"E1\",\"I0\"],\"justificativa\":\"A acao investigacao e compat├¡vel com a pergunta para identificar problemas observados sem inferir causa fisica. Os itens D0-D3 estao alinhados com E1 e I0, e as limitacoes reconhecem corretamente que nao ha teste fim a fim nem prova de causa fisica. Porem, o resumo introduz uma inferencia causal/fisica nao sustentada sobre ether5, contrariando o proprio contexto de laboratorio (ether5 sem exigencia de link). Como ha erro factual, a proposta deve ser rejeitada mesmo com acao investigativa. Nao faltam dados indispensaveis para avaliar a proposta; o problema e a contradicao factual.\" ,\"proposta_id\":\"6877a794cdcdf52d87b64a45b08afd21f9585a8c9b70f7dcf2e6c5f76dec7b85\"}",
+        "motivo_inconsistencia": "Trecho criticado nao consta na proposta Qwen",
+        "codigo_api": null,
+        "duracao_s": 3.199
+      }
+    },
+    {
+      "caso": "null_vira_false",
+      "esperado": "rejeitar",
+      "acerto": false,
+      "revisao": {
+        "modelo_solicitado": "gpt-5.4-mini-2026-03-17",
+        "proposta_id": "d4d0edfe748a6c942954ee201d9ae7188e62e9ff6421b7cf59e494b583a78a47",
+        "tentativas": [
+          {
+            "numero": 1,
+            "status": "parecer_inconsistente",
+            "http": null,
+            "codigo_api": null
+          }
+        ],
+        "status": "parecer_inconsistente",
+        "parecer": {
+          "acao_avaliada": "investigar",
+          "adequacao_objetivo": "adequada",
+          "avaliacao_factual": "erros_identificados",
+          "coerencia_acao_justificativa": "coerente",
+          "dados_faltantes": [],
+          "decisao": "rejeitar",
+          "erros_factuais": [
+            {
+              "correcao": "`invalid=null` nao permite concluir `invalid=false` nem que o cliente esteja valido; o valor permanece desconhecido nas evidencias fornecidas.",
+              "evidencias": [
+                "E1"
+              ],
+              "trecho": "resumo: \"invalid=null significa invalid=false e confirma cliente valido.\""
+            }
+          ],
+          "evidencias": [
+            "E1",
+            "I0"
+          ],
+          "justificativa": "A acao `investigar` esta no escopo da pergunta (`identifique os problemas observados sem inferir causa fisica`) e nao contradiz o objetivo. Contudo, a proposta traz uma inferencia factual nao sustentada ao interpretar `invalid=null` como `invalid=false` e `cliente valido`. Pelas evidencias, `null` significa desconhecido, nao confirmacao. O restante dos problemas observados (D0-D3) esta alinhado com E1/I0 e com os limites informados; a ressalva sobre DNS nos PCs e conectividade fim a fim e apropriada. Mesmo assim, a presenca do erro factual exige rejeicao.",
+          "proposta_id": "d4d0edfe748a6c942954ee201d9ae7188e62e9ff6421b7cf59e494b583a78a47"
+        },
+        "contingencia_elegivel": false,
+        "modelo_retornado": "gpt-5.4-mini-2026-03-17",
+        "response_id": "resp_02cff36e67cc5b14016ad64984635087d2bf4808176e7db947",
+        "usage": {
+          "input_tokens": 2428,
+          "input_tokens_details": {
+            "cache_write_tokens": 0,
+            "cached_tokens": 0
+          },
+          "output_tokens": 406,
+          "output_tokens_details": {
+            "reasoning_tokens": 78
+          },
+          "total_tokens": 2834
+        },
+        "conteudo_original": "{\"acao_avaliada\":\"investigar\",\"adequacao_objetivo\":\"adequada\",\"avaliacao_factual\":\"erros_identificados\",\"coerencia_acao_justificativa\":\"coerente\",\"dados_faltantes\":[],\"decisao\":\"rejeitar\",\"erros_factuais\":[{\"correcao\":\"`invalid=null` nao permite concluir `invalid=false` nem que o cliente esteja valido; o valor permanece desconhecido nas evidencias fornecidas.\",\"evidencias\":[\"E1\"],\"trecho\":\"resumo: \\\"invalid=null significa invalid=false e confirma cliente valido.\\\"\"}],\"evidencias\":[\"E1\",\"I0\"],\"justificativa\":\"A acao `investigar` esta no escopo da pergunta (`identifique os problemas observados sem inferir causa fisica`) e nao contradiz o objetivo. Contudo, a proposta traz uma inferencia factual nao sustentada ao interpretar `invalid=null` como `invalid=false` e `cliente valido`. Pelas evidencias, `null` significa desconhecido, nao confirmacao. O restante dos problemas observados (D0-D3) esta alinhado com E1/I0 e com os limites informados; a ressalva sobre DNS nos PCs e conectividade fim a fim e apropriada. Mesmo assim, a presenca do erro factual exige rejeicao.\",\"proposta_id\":\"d4d0edfe748a6c942954ee201d9ae7188e62e9ff6421b7cf59e494b583a78a47\"}",
+        "motivo_inconsistencia": "Trecho criticado nao consta na proposta Qwen",
+        "codigo_api": null,
+        "duracao_s": 2.988
+      }
+    }
+  ],
+  "limite": "Seis casos nao estimam qualidade geral. Falha de API nao conta como acerto. Dados de laboratorio sinteticos."
+}

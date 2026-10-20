@@ -1,0 +1,18 @@
+{
+  "perfil": "RB750Gr3-laboratorio-v1",
+  "idade_maxima_s": 120,
+  "limiar_cpu_pct": 85,
+  "limiar_ram_pct": 85,
+  "interfaces_com_link_esperado": [
+    "ether1",
+    "ether2"
+  ],
+  "interfaces_sem_exigencia_de_link": [
+    "ether3",
+    "ether4",
+    "ether5",
+    "bridge",
+    "lo"
+  ],
+  "nota": "Limiares experimentais de triagem, nao limites tecnicos do fabricante. Este perfil avalia CPU/RAM e links. No agente supervisionado, o perfil_supervisionado.json define o estado desejado; cada correcao depende do catalogo, da politica de execucao e da confirmacao humana."
+}

@@ -1,0 +1,141 @@
+{
+  "origem": "Recorte do ensaio real v0.5.7; sem nova inferencia ou SNMP.",
+  "sha256_registro_original": "9b55ee9b7a48bcfc40d7a04627f3674edb009b2645566fb5fb62329f1eba63a6",
+  "fatos_conferiveis": {
+    "origem": "resumo_das_mesmas_evidencias; nao e medicao independente",
+    "interfaces": [
+      {
+        "interface": "ether1",
+        "admin_status": 1,
+        "oper_status": 1,
+        "evidencia": "I0"
+      },
+      {
+        "interface": "ether2",
+        "admin_status": 1,
+        "oper_status": 1,
+        "evidencia": "I0"
+      },
+      {
+        "interface": "ether5",
+        "admin_status": 2,
+        "oper_status": 2,
+        "evidencia": "I1"
+      }
+    ],
+    "wan": {
+      "tem_dados": true,
+      "evidencia": "E1",
+      "dhcp": {
+        "disabled": false,
+        "invalid": false,
+        "status": "bound",
+        "address": "[IP]/24"
+      },
+      "ipv4_ativos_ether1": 1,
+      "rotas_PADRAO_ipv4_MAIN_ativas": 1,
+      "dns_servers_e_dynamic_servers": 1,
+      "doh_configurado": false
+    },
+    "limites": [
+      "DHCP.disabled nao e ifAdminStatus. oper_status=1 e link up, mesmo sem IP.",
+      "Rotas padrao IPv4/main=0 nao significa tabela vazia ou ausencia de qualquer caminho.",
+      "DNS upstream vazio nao testa resolucao no PC; null significa desconhecido.",
+      "ether5 sem exigencia de link no laboratorio: oper_status=2 nao prova defeito nem cabo ausente.",
+      "Ausencias de IP/rota/DNS podem estar relacionadas ao DHCP, mas nao sao quatro causas independentes."
+    ]
+  },
+  "propostas": [
+    {
+      "resumo": "A RB750Gr3 apresenta ether1 e ether2 operacionais (link up) com DHCP ativo e rota padrão. Ether5 está administrativamente desabilitada (admin_status=2) e sem link (oper_status=2), mas o cenário de laboratório não exige link para esta porta. CPU e memória estão normais.",
+      "hipoteses": [
+        "Ether5 pode estar fisicamente desligada ou com cabo desconectado, mas isso não é confirmado por oper_status=2 sem link exigido no cenário.",
+        "A ausência de IP em ether1 pode ser transitória devido a DHCP, já que o status é 'bound' e há uma rota padrão ativa.",
+        "Os logs antigos (idade > 120s) indicam mudanças administrativas passadas, mas não provam intenção atual ou causa física imediata."
+      ],
+      "evidencias": [
+        "I1",
+        "E1",
+        "E2"
+      ],
+      "acao": "habilitar_ether5",
+      "justificativa": "O plano operacional original de Qwen propõe habilitar ether5. A evidência I1 mostra admin_status=2, divergente do estado desejado (admin_status=1). Como o cenário permite a ação sem exigir link imediato, e não há bloqueio administrativo para reabilitação, a correção é executável conforme as regras de habilitação.",
+      "limitacoes": [
+        "oper_status=2 em ether5 não confirma defeito físico nem ausência de cabo, apenas estado down.",
+        "Logs com idade > 120s são considerados antigos e inconclusivos para determinar intenção atual.",
+        "DHCP disabled não é um estado de falha; oper_status=1 em ether1 indica link up mesmo sem IP.",
+        "Ausência de DNS upstream ou rotas IPv4 padrão específicas não prova falha de resolução nos PCs.",
+        "Não há correções executáveis para DHCP, DNS, disco ou CPU neste catálogo."
+      ],
+      "proximas_verificacoes": [
+        "V0"
+      ],
+      "problemas_identificados": [
+        {
+          "id": "D0",
+          "explicacao": "Ether5 apresenta admin_status=2, divergente do estado desejado (admin_status=1). Esta divergência administrativa é o único problema observável que justifica a ação de reabilitação proposta no plano operacional."
+        }
+      ]
+    },
+    {
+      "resumo": "A RB750Gr3 apresenta ether5 com admin_status=2 e oper_status=2. CPU e memória estão normais. DHCP, DNS e rotas funcionam em ether1. Ether5 foi desabilitada administrativamente há mais de 4 horas (idade_evento > 120s). Sem plano operacional válido ou evidência recente de intenção, a ação anterior é rejeitada.",
+      "hipoteses": [
+        "Ether5 permanece desabilitada por decisão administrativa antiga sem atualização recente.",
+        "Link down em ether5 pode ser irrelevante no cenário laboratorial onde link não é exigido para habilitação.",
+        "Ausência de IP/rota/DNS em ether5 é consequência da desabilitação, não falha independente."
+      ],
+      "evidencias": [
+        "I1",
+        "E3",
+        "E1",
+        "E2"
+      ],
+      "acao": "habilitar_ether5",
+      "justificativa": "A ação é proposta apenas para restaurar o estado administrativo desejado (admin_status=1), conforme evidência I1. A rejeição anterior ocorreu porque a leitura fornecida confirma admin_status=2; não se pode afirmar que o estado observado é 1. A habilitação administrativa é uma correção de estado explícito, distinta da verificação de link ou DHCP.",
+      "limitacoes": [
+        "admin_status=2 indica desabilitação ativa; a ação propõe mudar para 1 sem prova de intenção recente.",
+        "oper_status=2 confirma link down, mas não é causa nem efeito comprovada da desabilitação administrativa.",
+        "DHCP, DNS e rotas em ether5 são irrelevantes se a porta estiver administrativamente desabilitada.",
+        "Eventos recentes (idade_evento_s > 120s) não confirmam mudança recente de estado.",
+        "Sem plano_operacional_qwen atualizado ou evidência de erro recente, a ação é preventiva baseada em divergência de estado."
+      ],
+      "proximas_verificacoes": [
+        "V0"
+      ],
+      "problemas_identificados": [
+        {
+          "id": "D0",
+          "explicacao": "Ether5 apresenta admin_status=2, divergente do estado desejado (admin_status=1). A leitura fornecida confirma o valor SNMP 2; não se pode assumir que o estado observado é 1."
+        }
+      ]
+    }
+  ],
+  "bloqueios_originais": [
+    [
+      {
+        "tipo": "estado_explicito_divergente",
+        "campo": "achado:D0",
+        "trecho": "Ether5 apresenta admin_status=2, divergente do estado desejado (admin_status=1).",
+        "interface": "ether5",
+        "metrica": "admin_status",
+        "valor_texto": 1,
+        "valor_SNMP": 2,
+        "evidencia": "I1",
+        "correcao": "Na leitura fornecida, ether5 tem admin_status=2; nao afirmar admin_status=1 como estado observado."
+      }
+    ],
+    [
+      {
+        "tipo": "estado_explicito_divergente",
+        "campo": "achado:D0",
+        "trecho": "Ether5 apresenta admin_status=2, divergente do estado desejado (admin_status=1).",
+        "interface": "ether5",
+        "metrica": "admin_status",
+        "valor_texto": 1,
+        "valor_SNMP": 2,
+        "evidencia": "I1",
+        "correcao": "Na leitura fornecida, ether5 tem admin_status=2; nao afirmar admin_status=1 como estado observado."
+      }
+    ]
+  ]
+}

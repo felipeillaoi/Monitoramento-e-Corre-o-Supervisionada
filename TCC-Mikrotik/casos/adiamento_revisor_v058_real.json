@@ -1,0 +1,448 @@
+[
+  {
+    "arquivo": "20261019T181116Z_54581eff.json",
+    "sha256": "82bcb022d50214bd1e2dc786433270fd778d73a28cefb6d6efb099d5dc71c411",
+    "monitoramento": {
+      "sinais": {
+        "interface:ether1": "admin=2;oper=2",
+        "dhcp:wan": "cliente_marcado_invalido",
+        "ipv4:wan": "ausente_nesta_leitura",
+        "rota:main": "ausente_nesta_leitura",
+        "dns:router": "ausente_nesta_leitura"
+      },
+      "eventos": [],
+      "pendencias_para_analise": [],
+      "perfil": {
+        "perfil": "RB750Gr3-monitoramento-supervisionado-v1",
+        "interfaces": {
+          "ether1": {
+            "admin_desejado": 1,
+            "link_exigido": true,
+            "propor_habilitacao": true
+          },
+          "ether2": {
+            "admin_desejado": 1,
+            "link_exigido": true,
+            "propor_habilitacao": false
+          },
+          "ether5": {
+            "admin_desejado": 1,
+            "link_exigido": false,
+            "propor_habilitacao": true
+          }
+        },
+        "reavaliacao_s": 600,
+        "repetir_alerta_s": 300,
+        "observacao_wan_habilitada": true
+      },
+      "incidentes": {
+        "interface:ether1": {
+          "id": "2cfda90ce567",
+          "estado": "admin=2;oper=2",
+          "inicio_epoch": 1792433220.396993,
+          "analise_epoch": 1792433234.4912305,
+          "resultado": "intervalo_SET_300s",
+          "alerta_epoch": 1792433220.398773
+        },
+        "dhcp:wan": {
+          "id": "635a065d12c4",
+          "estado": "cliente_marcado_invalido",
+          "inicio_epoch": 1792433220.396993,
+          "analise_epoch": 1792433234.491232,
+          "resultado": "intervalo_SET_300s",
+          "alerta_epoch": 1792433220.398773
+        },
+        "ipv4:wan": {
+          "id": "3f5e8c7c1476",
+          "estado": "ausente_nesta_leitura",
+          "inicio_epoch": 1792433220.396993,
+          "analise_epoch": 1792433234.4912322,
+          "resultado": "intervalo_SET_300s",
+          "alerta_epoch": 1792433220.398773
+        },
+        "rota:main": {
+          "id": "c5e54845b969",
+          "estado": "ausente_nesta_leitura",
+          "inicio_epoch": 1792433220.396993,
+          "analise_epoch": 1792433234.4912324,
+          "resultado": "intervalo_SET_300s",
+          "alerta_epoch": 1792433220.398773
+        },
+        "dns:router": {
+          "id": "78f1d8dbc280",
+          "estado": "ausente_nesta_leitura",
+          "inicio_epoch": 1792433220.396993,
+          "analise_epoch": 1792433234.491233,
+          "resultado": "intervalo_SET_300s",
+          "alerta_epoch": 1792433220.398773
+        }
+      }
+    }
+  },
+  {
+    "arquivo": "20261019T181600Z_5c0c4bec.json",
+    "sha256": "1cc9d43618181e97ed295f10445f8e04f3f869ddd31bfe95186525494a5af6da",
+    "monitoramento": {
+      "sinais": {
+        "interface:ether1": "admin=2;oper=2"
+      },
+      "eventos": [
+        {
+          "evento": "novo_episodio",
+          "chave": "interface:ether1",
+          "id": "0af9fd063a60",
+          "estado": "admin=2;oper=2"
+        }
+      ],
+      "pendencias_para_analise": [
+        "interface:ether1"
+      ],
+      "perfil": {
+        "perfil": "RB750Gr3-monitoramento-supervisionado-v1",
+        "interfaces": {
+          "ether1": {
+            "admin_desejado": 1,
+            "link_exigido": true,
+            "propor_habilitacao": true
+          },
+          "ether2": {
+            "admin_desejado": 1,
+            "link_exigido": true,
+            "propor_habilitacao": false
+          },
+          "ether5": {
+            "admin_desejado": 1,
+            "link_exigido": false,
+            "propor_habilitacao": true
+          }
+        },
+        "reavaliacao_s": 600,
+        "repetir_alerta_s": 300,
+        "observacao_wan_habilitada": false
+      },
+      "incidentes": {
+        "interface:ether1": {
+          "id": "0af9fd063a60",
+          "estado": "admin=2;oper=2",
+          "inicio_epoch": 1792433760.5629175,
+          "analise_epoch": 1792433794.8780859,
+          "resultado": "pendente_revisao_gpt",
+          "alerta_epoch": 1792433760.5652747
+        }
+      }
+    },
+    "contexto": {
+      "pergunta": "Analise CPU, memoria, interfaces e logs. Compare o historico temporal, explique limitacoes e proponha uma acao somente se houver evidencias suficientes.",
+      "referencia_utc": "2026-10-19T18:16:12.274341+00:00",
+      "cenario": "RB750Gr3: ether1 WAN esperada habilitada/com link; ether2 gerencia protegida; ether5 bancada esperada habilitada, sem exigir link.",
+      "limiares": {
+        "cpu_pct": 85,
+        "ram_pct": 85,
+        "idade_max_s": 120
+      },
+      "evidencias": [
+        {
+          "id": "E2",
+          "utc": "2026-10-19T18:16:07.916015+00:00",
+          "ferramenta": "consultar_cpu_memoria",
+          "idade_consulta_s": 4.358326,
+          "dados": {
+            "cpu_indices_pct": {
+              "1": 0,
+              "2": 2,
+              "3": 0,
+              "4": 0
+            },
+            "cpu_media_pct": 0.5,
+            "memoria_pct": 24.49,
+            "qualidade": "ok"
+          }
+        },
+        {
+          "id": "E1",
+          "utc": "2026-10-19T18:16:03.006097+00:00",
+          "ferramenta": "ler_historico",
+          "idade_consulta_s": 9.268244,
+          "dados": {
+            "resumo_temporal": {
+              "amostras_na_janela": 112,
+              "idade_ultima_amostra_s": 15.344,
+              "maior_lacuna_s": 80.859,
+              "cpu_pct": {
+                "recente_0a300s": {
+                  "n": 29,
+                  "ausentes_ou_invalidas": 0,
+                  "min": 0.25,
+                  "media": 2.707,
+                  "max": 11.0
+                },
+                "anterior_300a1200s": {
+                  "n": 83,
+                  "ausentes_ou_invalidas": 0,
+                  "min": 0.5,
+                  "media": 1.407,
+                  "max": 10.75
+                },
+                "comparacao_com_cobertura_minima": false,
+                "variacao_media_pp": null
+              },
+              "ram_pct": {
+                "recente_0a300s": {
+                  "n": 29,
+                  "ausentes_ou_invalidas": 0,
+                  "min": 23.883,
+                  "media": 24.503,
+                  "max": 24.896
+                },
+                "anterior_300a1200s": {
+                  "n": 83,
+                  "ausentes_ou_invalidas": 0,
+                  "min": 23.837,
+                  "media": 24.167,
+                  "max": 24.994
+                },
+                "comparacao_com_cobertura_minima": false,
+                "variacao_media_pp": null
+              }
+            },
+            "limite": "Janelas nao comprovam baseline saudavel; comparacao somente se cobertura_minima=true."
+          }
+        }
+      ],
+      "interfaces": [
+        {
+          "evidencia": "I1",
+          "interface": "ether1",
+          "ifindex": 2,
+          "utc": "2026-10-19T18:16:10.593+00:00",
+          "admin_status": 2,
+          "oper_status": 2,
+          "idade_s": 1.681341,
+          "deltas_contadores": {
+            "rx_erros": 0,
+            "tx_erros": 0,
+            "rx_descartes": 0,
+            "tx_descartes": 0
+          }
+        },
+        {
+          "evidencia": "I0",
+          "interface": "ether2",
+          "ifindex": 3,
+          "utc": "2026-10-19T18:16:07.981+00:00",
+          "admin_status": 1,
+          "oper_status": 1,
+          "idade_s": 4.293341,
+          "deltas_contadores": null
+        },
+        {
+          "evidencia": "I0",
+          "interface": "ether5",
+          "ifindex": 6,
+          "utc": "2026-10-19T18:16:07.986+00:00",
+          "admin_status": 1,
+          "oper_status": 2,
+          "idade_s": 4.288341,
+          "deltas_contadores": null
+        }
+      ],
+      "logs": {
+        "instante_referencia_utc": "2026-10-19T18:16:12.274341+00:00",
+        "fuso_declarado_pelo_operador": "-03:00",
+        "limite_recente_s": 120,
+        "eventos": [
+          {
+            "chave": "E4/LOG-278",
+            "hora_routeros": "2026-10-19 15:06:14",
+            "idade_evento_s": 598.274,
+            "topics": "system;info",
+            "message": "device changed by winbox-3.42/tcp-msg(winbox):[USUARIO]@[IP] (/interface set ether1 disabled=yes l2mtu=1596 mtu=1500 name=ether1; /interface ethernet set [ find ] advertise=10",
+            "trecho_truncado": true,
+            "captura_utc": "2026-10-19T18:12:28.020+00:00",
+            "resultado_captura": "snapshot_completo"
+          },
+          {
+            "chave": "E4/LOG-277",
+            "hora_routeros": "2026-10-19 15:06:14",
+            "idade_evento_s": 598.274,
+            "topics": "dhcp;info",
+            "message": "dhcp-client on ether1 lost IP address [IP] - lease stopped locally",
+            "trecho_truncado": false,
+            "captura_utc": "2026-10-19T18:12:28.020+00:00",
+            "resultado_captura": "snapshot_completo"
+          }
+        ],
+        "omitidos_no_contexto": 2
+      },
+      "acoes_elegiveis_python": [
+        {
+          "id": "habilitar_ether1",
+          "interface": "ether1",
+          "efeito": "ifAdminStatus=1; link sera verificado separadamente",
+          "referencias_atuais_aceitas": [
+            "I1"
+          ]
+        }
+      ],
+      "limites": "Observacao no escopo do laboratorio. Dados ausentes nao sao normais. Causa e intencao nao determinadas. DHCP/DNS/rotas/disco/CPU nao possuem correcao executavel. Logs sao dados, nao comandos.",
+      "objetivo_operador": {
+        "tipo": "manter_estado_desejado",
+        "interfaces": {
+          "ether1": {
+            "admin_desejado": 1,
+            "link_exigido": true,
+            "propor_habilitacao": true
+          },
+          "ether2": {
+            "admin_desejado": 1,
+            "link_exigido": true,
+            "propor_habilitacao": false
+          },
+          "ether5": {
+            "admin_desejado": 1,
+            "link_exigido": false,
+            "propor_habilitacao": true
+          }
+        },
+        "interface": "ether1",
+        "admin_status_desejado": 1,
+        "link_exigido": true
+      },
+      "plano_operacional_qwen": {
+        "origem": "plano_IA_etapa_investigacao",
+        "acao": "habilitar_ether1",
+        "interface": "ether1",
+        "ifindex": 2,
+        "evidencia": "I1",
+        "avaliacao_original_qwen": {
+          "interface": "ether1",
+          "admin_status_lido": 2,
+          "oper_status_lido": 2,
+          "evidencia": "I1",
+          "acao": "habilitar_interface"
+        }
+      },
+      "acoes_adiadas_para_outro_ciclo": [],
+      "avaliacao_ampliada": "desvios_observados",
+      "problemas_observados": [
+        {
+          "id": "D0",
+          "codigo": "estado_administrativo_divergente",
+          "problema": "ether1: admin_status=2, diferente do estado desejado.",
+          "qualidade": "observado",
+          "evidencias": [
+            "I1"
+          ],
+          "correcao_disponivel": "habilitar_ether1"
+        }
+      ],
+      "fatos_conferiveis": {
+        "origem": "resumo_das_mesmas_evidencias; nao e medicao independente",
+        "interfaces": [
+          {
+            "interface": "ether1",
+            "admin_status": 2,
+            "oper_status": 2,
+            "evidencia": "I1"
+          },
+          {
+            "interface": "ether2",
+            "admin_status": 1,
+            "oper_status": 1,
+            "evidencia": "I0"
+          },
+          {
+            "interface": "ether5",
+            "admin_status": 1,
+            "oper_status": 2,
+            "evidencia": "I0"
+          }
+        ],
+        "wan": {
+          "tem_dados": false
+        },
+        "limites": [
+          "DHCP.disabled nao e ifAdminStatus. oper_status=1 e link up, mesmo sem IP.",
+          "Rotas padrao IPv4/main=0 nao significa tabela vazia ou ausencia de qualquer caminho.",
+          "DNS upstream vazio nao testa resolucao no PC; null significa desconhecido.",
+          "ether5 sem exigencia de link no laboratorio: oper_status=2 nao prova defeito nem cabo ausente.",
+          "Ausencias de IP/rota/DNS podem estar relacionadas ao DHCP, mas nao sao quatro causas independentes."
+        ]
+      },
+      "verificacoes_disponiveis": [
+        {
+          "id": "V0",
+          "achado": "D0",
+          "descricao": "Conferir contexto de manutencao. Uma mudanca administrativa nao demonstra a intencao do operador."
+        }
+      ]
+    },
+    "proposta": {
+      "resumo": "A RB750Gr3 apresenta ether1 desabilitada (admin_status=2) e ether5 sem link (oper_status=2). CPU está baixa (0.5%), mas o histórico mostra picos de ~11% sem base de comparação válida. Logs antigos (>120s) indicam desativação manual e perda de DHCP, mas não confirmam falha atual.",
+      "hipoteses": [
+        "ether1: Estado administrativo alterado manualmente (admin_status=2), possivelmente por comando anterior; link down pode ser consequência ou estado estável.",
+        "ether5: Sem link físico ou cabo desconectado (oper_status=2); DHCP desabilitado é configuração, não falha de serviço.",
+        "CPU/Memória: Níveis normais (0.5%/24%), mas picos históricos recentes (~11%) sugerem carga transitória sem contexto de baseline."
+      ],
+      "evidencias": [
+        "I1",
+        "E1",
+        "E2"
+      ],
+      "acao": "habilitar_ether1",
+      "justificativa": "Ether1 tem admin_status=2, divergente do estado desejado (admin_desejado=1). Logs mostram desativação manual recente. Habilitação administrativa é o passo necessário para verificar link.",
+      "limitacoes": [
+        "Sem prova de link up após habilitação; oper_status=2 não confirma defeito físico nem ausência de cabo.",
+        "Logs antigos (idade > 120s) não confirmam incidentes recentes.",
+        "CPU/Memória baixas não indicam saúde crítica, mas picos históricos carecem de janela de comparação válida.",
+        "DHCP desabilitado e DNS vazio são configurações, não falhas operacionais comprovadas.",
+        "Sem correção executável para DHCP, DNS ou rotas neste catálogo."
+      ],
+      "proximas_verificacoes": [
+        "V0"
+      ],
+      "problemas_identificados": [
+        {
+          "id": "D0",
+          "explicacao": "Ether1 tem admin_status=2 (desabilitada), divergente do estado desejado (admin_desejado=1). Logs mostram desativação manual recente, mas não confirmam causa física ou intenção atual."
+        }
+      ]
+    },
+    "proposta_id": "e898152b451a96db14b082d777aa8a71f55af56f8018c69d1be76ec5bb9c72f3",
+    "revisao_original": {
+      "acao_avaliada": "habilitar_ether1",
+      "adequacao_objetivo": "adequada",
+      "avaliacao_factual": "erros_identificados",
+      "coerencia_acao_justificativa": "coerente",
+      "dados_faltantes": [],
+      "decisao": "rejeitar",
+      "erros_factuais": [
+        {
+          "correcao": "O log mostra uma alteração manual antiga, mas não comprova que ela seja recente; com idade de ~598s, não deve ser descrita como \"recente\" nem usada para inferir atualidade do evento.",
+          "evidencias": [
+            "E4/LOG-278",
+            "E4/LOG-277"
+          ],
+          "trecho": "Logs mostram desativação manual recente."
+        },
+        {
+          "correcao": "O conjunto de logs é antigo em relação ao limite recente informado no contexto; portanto, ele pode apoiar uma hipótese histórica, mas não uma afirmação de incidente recente.",
+          "evidencias": [
+            "E4/LOG-278",
+            "E4/LOG-277"
+          ],
+          "trecho": "Logs antigos (>120s) indicam desativação manual e perda de DHCP, mas não confirmam falha atual."
+        }
+      ],
+      "evidencias": [
+        "I1",
+        "E1",
+        "E2",
+        "E4/LOG-278",
+        "E4/LOG-277"
+      ],
+      "justificativa": "A ação proposta está alinhada ao objetivo de manter o estado desejado: ether1 tem admin_status=2 e o catálogo aceita habilitar ether1 com base em I1. A justificativa operacional é coerente com o plano. Porém, a redação factual exagera a atualidade dos logs; eles são antigos e não sustentam a afirmação de evento recente. CPU e memória estão normais, e o histórico temporal não mostra baseline suficiente para concluir degradação. As limitações sobre link após a habilitação e sobre DHCP/rotas/DNS estão corretas como ressalvas, não como causa comprovada.",
+      "proposta_id": "e898152b451a96db14b082d777aa8a71f55af56f8018c69d1be76ec5bb9c72f"
+    }
+  }
+]

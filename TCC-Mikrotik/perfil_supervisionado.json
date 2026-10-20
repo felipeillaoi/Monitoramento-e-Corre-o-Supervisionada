@@ -1,0 +1,10 @@
+{
+  "perfil": "RB750Gr3-monitoramento-supervisionado-v1",
+  "interfaces": {
+    "ether1": {"admin_desejado": 1, "link_exigido": true, "propor_habilitacao": true},
+    "ether2": {"admin_desejado": 1, "link_exigido": true, "propor_habilitacao": false},
+    "ether5": {"admin_desejado": 1, "link_exigido": false, "propor_habilitacao": true}
+  },
+  "reavaliacao_s": 600,
+  "repetir_alerta_s": 300
+}

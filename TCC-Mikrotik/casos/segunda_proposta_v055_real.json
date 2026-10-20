@@ -1,0 +1,135 @@
+{
+  "origem": "segunda proposta do ensaio 20261019T165549Z_b427b0fb; recorte sem credenciais",
+  "proposta": {
+    "resumo": "Análise da RB750Gr3 baseada estritamente nas evidências fornecidas, corrigindo inferências factuais indevidas sobre estados administrativos, falhas de resolução e causas raiz.",
+    "hipoteses": [
+      "A ausência de endereços IPv4 em ether1 pode estar relacionada ao serviço DHCP desabilitado ou a uma perda recente de lease (E8/LOG-260), sem confirmar defeito físico ou estado administrativo da interface.",
+      "A falta de DNS upstream e rotas padrão indica configuração vazia, mas não prova falha de resolução nos clientes nem causa direta da indisponibilidade de serviços.",
+      "O link down em ether5 é esperado no cenário laboratorial e não constitui um defeito observado."
+    ],
+    "evidencias": [
+      "E1",
+      "E2",
+      "I0",
+      "E8/LOG-260"
+    ],
+    "acao": "investigar",
+    "justificativa": "A ação 'investigar' é compatível com o escopo de análise. Os dados de CPU/Memória estão normais. A proposta anterior foi rejeitada por inferências factuais indevidas: confundir DHCP.disabled com estado administrativo da interface, extrapolar ausência de DNS para falha de resolução e tratar log de perda de lease como causa raiz. Esta resposta corrige esses erros mantendo a limitação de não executar correções sem consentimento.",
+    "limitacoes": [
+      "DHCP.disabled é um estado de serviço, não prova defeito físico ou bloqueio administrativo da interface.",
+      "Ausência de DNS upstream/rotas indica configuração vazia, não falha de resolução nos PCs.",
+      "Log de perda de lease confirma inatividade do serviço, mas não a causa raiz (cabo, servidor, etc.).",
+      "Oper_status=1 em ether5 sem link é esperado no cenário e não prova defeito.",
+      "Nenhuma correção executável disponível no catálogo para habilitar serviços administrativos ou resolver estados de link sem consentimento humano."
+    ],
+    "proximas_verificacoes": [
+      "Verificar se o serviço DHCP está realmente desabilitado via comando 'show dhcp' (não apenas SNMP).",
+      "Confirmar estado físico do cabo em ether1 e verificar logs de erro de link.",
+      "Testar resolução DNS localmente no roteador para validar a hipótese de configuração vazia."
+    ],
+    "problemas_identificados": [
+      {
+        "id": "D0",
+        "explicacao": "O campo dhcp.disabled=true indica o serviço DHCP está desativado administrativamente. Isso não confirma que a interface ether1 esteja bloqueada para tráfego ou em estado administrativo 'down', apenas que o protocolo DHCP não está ativo."
+      },
+      {
+        "id": "D1",
+        "explicacao": "A ausência de endereços IPv4 ativos em ether1 pode ser causada pelo serviço DHCP desativado ou por perda recente de lease (E8/LOG-260). Não se pode afirmar que a interface está 'down' ou com defeito físico."
+      },
+      {
+        "id": "D2",
+        "explicacao": "A ausência de rotas padrão IPv4 na tabela main é um dado observável, mas não prova falha de roteamento global nem causa raiz da indisponibilidade de serviços."
+      },
+      {
+        "id": "D3",
+        "explicacao": "A lista vazia de DNS servers e DoH configurados indica configuração ausente. Isso não comprova que os PCs conectados estão com falha de resolução, pois pode ser uma configuração local ou upstream."
+      }
+    ]
+  },
+  "fatos_conferiveis": {
+    "origem": "resumo_das_mesmas_evidencias; nao e medicao independente",
+    "interfaces": [
+      {
+        "interface": "ether1",
+        "admin_status": 1,
+        "oper_status": 1,
+        "evidencia": "I0"
+      },
+      {
+        "interface": "ether2",
+        "admin_status": 1,
+        "oper_status": 1,
+        "evidencia": "I0"
+      },
+      {
+        "interface": "ether5",
+        "admin_status": 1,
+        "oper_status": 2,
+        "evidencia": "I0"
+      }
+    ],
+    "wan": {
+      "tem_dados": true,
+      "evidencia": "E1",
+      "dhcp": {
+        "disabled": true,
+        "invalid": null,
+        "status": "stopped",
+        "address": ""
+      },
+      "ipv4_ativos_ether1": 0,
+      "rotas_PADRAO_ipv4_MAIN_ativas": 0,
+      "dns_servers_e_dynamic_servers": 0,
+      "doh_configurado": false
+    },
+    "limites": [
+      "DHCP.disabled nao e ifAdminStatus. oper_status=1 e link up, mesmo sem IP.",
+      "Rotas padrao IPv4/main=0 nao significa tabela vazia ou ausencia de qualquer caminho.",
+      "DNS upstream vazio nao testa resolucao no PC; null significa desconhecido.",
+      "ether5 sem exigencia de link no laboratorio: oper_status=2 nao prova defeito nem cabo ausente.",
+      "Ausencias de IP/rota/DNS podem estar relacionadas ao DHCP, mas nao sao quatro causas independentes."
+    ]
+  },
+  "problemas_observados": [
+    {
+      "id": "D0",
+      "codigo": "cliente_dhcp_desabilitado",
+      "problema": "Cliente DHCP de ether1 administrativamente desabilitado.",
+      "qualidade": "observado",
+      "evidencias": [
+        "E1"
+      ],
+      "correcao_disponivel": null
+    },
+    {
+      "id": "D1",
+      "codigo": "wan_sem_ipv4",
+      "problema": "Nenhum endereco IPv4 ativo observado em ether1.",
+      "qualidade": "observado",
+      "evidencias": [
+        "E1"
+      ],
+      "correcao_disponivel": null
+    },
+    {
+      "id": "D2",
+      "codigo": "rota_padrao_ausente",
+      "problema": "Nenhuma rota IPv4 padrao ativa observada na tabela main.",
+      "qualidade": "observado",
+      "evidencias": [
+        "E1"
+      ],
+      "correcao_disponivel": null
+    },
+    {
+      "id": "D3",
+      "codigo": "dns_upstream_ausente",
+      "problema": "Listas DNS servers/dynamic-servers vazias e nenhum DoH configurado.",
+      "qualidade": "observado",
+      "evidencias": [
+        "E1"
+      ],
+      "correcao_disponivel": null
+    }
+  ]
+}

@@ -1,0 +1,359 @@
+{
+  "origem": "proposta original do ensaio 20261019T171140Z_5152fd7e; recorte sem credenciais",
+  "proposta": {
+    "resumo": "RB750Gr3 apresenta CPU/Memoria saudáveis (7,75%/24,85%), mas ether1 WAN está administrativamente desabilitado e sem link IPv4. Ether5 está down por padrão do cenário de laboratório.",
+    "hipoteses": [
+      "Cliente DHCP em ether1 foi desativado manualmente (evidência: log 'dhcp client changed by winbox' com idade 113s, E8/LOG-265).",
+      "Ausência de IP e rotas padrão em ether1 decorre da desabilitação do serviço DHCP localmente.",
+      "Ether5 oper_status=2 é esperado no cenário de laboratório sem exigência de link físico."
+    ],
+    "evidencias": [
+      "E3",
+      "E1",
+      "E2"
+    ],
+    "acao": "investigar",
+    "justificativa": "CPU/Memoria normais. Ether1 desabilitado administrativamente e sem IP; ether5 down conforme cenário.",
+    "limitacoes": [
+      "DHCP.disabled é estado de configuração, não falha de servidor.",
+      "oper_status=1 em ether1 não garante link físico ou conectividade.",
+      "Rotas padrão=0 indica ausência de DHCP, não tabela vazia.",
+      "DNS vazio e sem DoH; resolucao no PC depende de configurações locais.",
+      "Logs são dados históricos, não comandos executáveis.",
+      "Sem correcao executavel para DHCP/DNS/rotas/CPU neste catalogo."
+    ],
+    "proximas_verificacoes": [
+      "V0",
+      "V1"
+    ],
+    "problemas_identificados": [
+      {
+        "id": "D0",
+        "explicacao": "Cliente DHCP em ether1 administrativamente desabilitado (admin_status=1, oper_status=1). Log E8/LOG-265 confirma comando 'set disabled=yes' via winbox há 113s. Estado atual reflete a ação anterior."
+      },
+      {
+        "id": "D1",
+        "explicacao": "Nenhum endereço IPv4 ativo em ether1 (ipv4_count=0, address=''). DHCP desabilitado impede concessão de IP. Sem link físico ou via DHCP, porta permanece sem endereçamento."
+      },
+      {
+        "id": "D2",
+        "explicacao": "Nenhuma rota padrão IPv4 ativa em main (default_routes=0). Rotas dinâmicas dependem de DHCP; com serviço desligado e sem IP, porta não possui caminho para internet."
+      },
+      {
+        "id": "D3",
+        "explicacao": "DNS upstream vazio (dns_servers=0) e DoH desativado. Ausência de servidores DNS no roteador impede resolucao interna; falha de leitura não é normalidade."
+      }
+    ]
+  },
+  "contexto": {
+    "pergunta": "Analise CPU, memoria, interfaces e logs. Compare o historico temporal, explique limitacoes e proponha uma acao somente se houver evidencias suficientes.",
+    "referencia_utc": "2026-10-19T17:12:02.023427+00:00",
+    "cenario": "RB750Gr3: ether1 WAN esperada habilitada/com link; ether2 gerencia protegida; ether5 bancada esperada habilitada, sem exigir link.",
+    "limiares": {
+      "cpu_pct": 85,
+      "ram_pct": 85,
+      "idade_max_s": 120
+    },
+    "evidencias": [
+      {
+        "id": "E3",
+        "utc": "2026-10-19T17:11:56.004646+00:00",
+        "ferramenta": "consultar_cpu_memoria",
+        "idade_consulta_s": 6.018781,
+        "dados": {
+          "cpu_indices_pct": {
+            "1": 9,
+            "2": 7,
+            "3": 8,
+            "4": 7
+          },
+          "cpu_media_pct": 7.75,
+          "memoria_pct": 24.85,
+          "qualidade": "ok"
+        }
+      },
+      {
+        "id": "E1",
+        "utc": "2026-10-19T17:11:41.386879+00:00",
+        "ferramenta": "consultar_estado_wan",
+        "idade_consulta_s": 20.636548,
+        "dados": {
+          "tem_dados": true,
+          "utc": "2026-10-19T17:11:41.380+00:00",
+          "origem": "SNMP_GET_script_leitura",
+          "qualidade": "parcial",
+          "default_routes": 0,
+          "dhcp": {
+            "add_default_route": "yes",
+            "address": "",
+            "disabled": true,
+            "gateway": "",
+            "id": "*1",
+            "invalid": null,
+            "status": "stopped"
+          },
+          "dhcp_count": 1,
+          "dns_servers": 0,
+          "doh_configured": false,
+          "errors": "",
+          "free_hdd": 5242880,
+          "interface": "ether1",
+          "ipv4_count": 0,
+          "total_hdd": 16777216,
+          "version": 1,
+          "campos_indisponiveis": [
+            "dhcp.invalid"
+          ],
+          "normalizacao_flags_dhcp": {
+            "invalid": "NoneType->desconhecido"
+          }
+        }
+      },
+      {
+        "id": "E2",
+        "utc": "2026-10-19T17:11:47.091343+00:00",
+        "ferramenta": "ler_historico",
+        "idade_consulta_s": 14.932084,
+        "dados": {
+          "resumo_temporal": {
+            "amostras_na_janela": 0,
+            "idade_ultima_amostra_s": null,
+            "maior_lacuna_s": null,
+            "cpu_pct": {
+              "recente_0a300s": {
+                "n": 0,
+                "ausentes_ou_invalidas": 0,
+                "min": null,
+                "media": null,
+                "max": null
+              },
+              "anterior_300a1200s": {
+                "n": 0,
+                "ausentes_ou_invalidas": 0,
+                "min": null,
+                "media": null,
+                "max": null
+              },
+              "comparacao_com_cobertura_minima": false,
+              "variacao_media_pp": null
+            },
+            "ram_pct": {
+              "recente_0a300s": {
+                "n": 0,
+                "ausentes_ou_invalidas": 0,
+                "min": null,
+                "media": null,
+                "max": null
+              },
+              "anterior_300a1200s": {
+                "n": 0,
+                "ausentes_ou_invalidas": 0,
+                "min": null,
+                "media": null,
+                "max": null
+              },
+              "comparacao_com_cobertura_minima": false,
+              "variacao_media_pp": null
+            }
+          },
+          "limite": "Janelas nao comprovam baseline saudavel; comparacao somente se cobertura_minima=true."
+        }
+      }
+    ],
+    "interfaces": [
+      {
+        "evidencia": "I0",
+        "interface": "ether1",
+        "ifindex": 2,
+        "utc": "2026-10-19T17:12:00.209+00:00",
+        "admin_status": 1,
+        "oper_status": 1,
+        "idade_s": 1.814427,
+        "deltas_contadores": null
+      },
+      {
+        "evidencia": "I0",
+        "interface": "ether2",
+        "ifindex": 3,
+        "utc": "2026-10-19T17:12:00.213+00:00",
+        "admin_status": 1,
+        "oper_status": 1,
+        "idade_s": 1.810427,
+        "deltas_contadores": null
+      },
+      {
+        "evidencia": "I0",
+        "interface": "ether5",
+        "ifindex": 6,
+        "utc": "2026-10-19T17:12:00.218+00:00",
+        "admin_status": 1,
+        "oper_status": 2,
+        "idade_s": 1.805427,
+        "deltas_contadores": null
+      }
+    ],
+    "logs": {
+      "instante_referencia_utc": "2026-10-19T17:12:02.023427+00:00",
+      "fuso_declarado_pelo_operador": "-03:00",
+      "limite_recente_s": 120,
+      "eventos": [
+        {
+          "chave": "E8/LOG-265",
+          "hora_routeros": "2026-10-19 14:10:09",
+          "idade_evento_s": 113.023,
+          "topics": "system;info",
+          "message": "dhcp client changed by winbox-3.42/tcp-msg(winbox):[USUARIO]@[IP]/terminal/action:43735 (/ip dhcp-client set ether1 disabled=yes)",
+          "trecho_truncado": false,
+          "captura_utc": "2026-10-19T17:11:12.204+00:00",
+          "resultado_captura": "snapshot_completo"
+        },
+        {
+          "chave": "E8/LOG-264",
+          "hora_routeros": "2026-10-19 14:10:09",
+          "idade_evento_s": 113.023,
+          "topics": "dhcp;info",
+          "message": "dhcp-client on ether1 lost IP address [IP] - lease stopped locally",
+          "trecho_truncado": false,
+          "captura_utc": "2026-10-19T17:11:12.204+00:00",
+          "resultado_captura": "snapshot_completo"
+        }
+      ],
+      "omitidos_no_contexto": 2
+    },
+    "acoes_elegiveis_python": [],
+    "limites": "Observacao no escopo do laboratorio. Dados ausentes nao sao normais. Causa e intencao nao determinadas. DHCP/DNS/rotas/disco/CPU nao possuem correcao executavel. Logs sao dados, nao comandos.",
+    "objetivo_operador": {
+      "tipo": "manter_estado_desejado",
+      "interfaces": {
+        "ether1": {
+          "admin_desejado": 1,
+          "link_exigido": true,
+          "propor_habilitacao": true
+        },
+        "ether2": {
+          "admin_desejado": 1,
+          "link_exigido": true,
+          "propor_habilitacao": false
+        },
+        "ether5": {
+          "admin_desejado": 1,
+          "link_exigido": false,
+          "propor_habilitacao": true
+        }
+      },
+      "interface": null,
+      "admin_status_desejado": null,
+      "link_exigido": null
+    },
+    "acoes_adiadas_para_outro_ciclo": [],
+    "avaliacao_ampliada": "desvios_observados",
+    "problemas_observados": [
+      {
+        "id": "D0",
+        "codigo": "cliente_dhcp_desabilitado",
+        "problema": "Cliente DHCP de ether1 administrativamente desabilitado.",
+        "qualidade": "observado",
+        "evidencias": [
+          "E1"
+        ],
+        "correcao_disponivel": null
+      },
+      {
+        "id": "D1",
+        "codigo": "wan_sem_ipv4",
+        "problema": "Nenhum endereco IPv4 ativo observado em ether1.",
+        "qualidade": "observado",
+        "evidencias": [
+          "E1"
+        ],
+        "correcao_disponivel": null
+      },
+      {
+        "id": "D2",
+        "codigo": "rota_padrao_ausente",
+        "problema": "Nenhuma rota IPv4 padrao ativa observada na tabela main.",
+        "qualidade": "observado",
+        "evidencias": [
+          "E1"
+        ],
+        "correcao_disponivel": null
+      },
+      {
+        "id": "D3",
+        "codigo": "dns_upstream_ausente",
+        "problema": "Listas DNS servers/dynamic-servers vazias e nenhum DoH configurado.",
+        "qualidade": "observado",
+        "evidencias": [
+          "E1"
+        ],
+        "correcao_disponivel": null
+      }
+    ],
+    "fatos_conferiveis": {
+      "origem": "resumo_das_mesmas_evidencias; nao e medicao independente",
+      "interfaces": [
+        {
+          "interface": "ether1",
+          "admin_status": 1,
+          "oper_status": 1,
+          "evidencia": "I0"
+        },
+        {
+          "interface": "ether2",
+          "admin_status": 1,
+          "oper_status": 1,
+          "evidencia": "I0"
+        },
+        {
+          "interface": "ether5",
+          "admin_status": 1,
+          "oper_status": 2,
+          "evidencia": "I0"
+        }
+      ],
+      "wan": {
+        "tem_dados": true,
+        "evidencia": "E1",
+        "dhcp": {
+          "disabled": true,
+          "invalid": null,
+          "status": "stopped",
+          "address": ""
+        },
+        "ipv4_ativos_ether1": 0,
+        "rotas_PADRAO_ipv4_MAIN_ativas": 0,
+        "dns_servers_e_dynamic_servers": 0,
+        "doh_configurado": false
+      },
+      "limites": [
+        "DHCP.disabled nao e ifAdminStatus. oper_status=1 e link up, mesmo sem IP.",
+        "Rotas padrao IPv4/main=0 nao significa tabela vazia ou ausencia de qualquer caminho.",
+        "DNS upstream vazio nao testa resolucao no PC; null significa desconhecido.",
+        "ether5 sem exigencia de link no laboratorio: oper_status=2 nao prova defeito nem cabo ausente.",
+        "Ausencias de IP/rota/DNS podem estar relacionadas ao DHCP, mas nao sao quatro causas independentes."
+      ]
+    },
+    "verificacoes_disponiveis": [
+      {
+        "id": "V0",
+        "achado": "D0",
+        "descricao": "Conferir manutencao e estado desejado; reabilitacao DHCP ainda nao faz parte do executor."
+      },
+      {
+        "id": "V1",
+        "achado": "D1",
+        "descricao": "Verificar concessao DHCP e modo de enderecamento; nao comprova falha fim a fim."
+      },
+      {
+        "id": "V2",
+        "achado": "D2",
+        "descricao": "Conferir DHCP e rotas. Outras tabelas, IPv6 e rotas especificas nao foram avaliados."
+      },
+      {
+        "id": "V3",
+        "achado": "D3",
+        "descricao": "Verificar necessidade de resolucao no roteador. Entradas estaticas/FWD e DNS dos computadores nao foram testados."
+      }
+    ]
+  }
+}

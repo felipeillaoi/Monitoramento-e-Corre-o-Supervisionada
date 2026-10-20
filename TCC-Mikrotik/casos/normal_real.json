@@ -1,0 +1,212 @@
+{
+  "origem": "Recorte das evidencias reais fornecidas pelo usuario; sem respostas SNMP brutas.",
+  "instante_referencia": "2026-10-03T12:08:18+00:00",
+  "ferramentas": [
+    {
+      "id": "E0",
+      "utc": "2026-10-03T12:08:02+00:00",
+      "origem": "programa",
+      "ferramenta": "ler_historico",
+      "argumentos": {},
+      "dados": {
+        "tem_dados": true,
+        "idade_s": 9.4,
+        "antigo_ou_relogio_invalido": false,
+        "serie": [
+          {
+            "ciclo": 845,
+            "utc": "2026-10-03T12:07:06.039+00:00",
+            "status": "ok_limitado",
+            "cpu_pct": 0.0,
+            "ram_pct": 22.87750244140625
+          },
+          {
+            "ciclo": 846,
+            "utc": "2026-10-03T12:07:16.050+00:00",
+            "status": "ok_limitado",
+            "cpu_pct": 0.0,
+            "ram_pct": 22.87750244140625
+          },
+          {
+            "ciclo": 847,
+            "utc": "2026-10-03T12:07:26.056+00:00",
+            "status": "ok_limitado",
+            "cpu_pct": 0.0,
+            "ram_pct": 22.87750244140625
+          },
+          {
+            "ciclo": 848,
+            "utc": "2026-10-03T12:07:36.068+00:00",
+            "status": "ok_limitado",
+            "cpu_pct": 0.0,
+            "ram_pct": 22.87750244140625
+          },
+          {
+            "ciclo": 849,
+            "utc": "2026-10-03T12:07:42.906+00:00",
+            "status": "ok_limitado",
+            "cpu_pct": 0.0,
+            "ram_pct": 22.87750244140625
+          },
+          {
+            "ciclo": 850,
+            "utc": "2026-10-03T12:07:52.918+00:00",
+            "status": "ok_limitado",
+            "cpu_pct": 0.0,
+            "ram_pct": 22.87750244140625
+          }
+        ],
+        "interfaces_ultimo_ciclo_max16": [
+          {
+            "ifindex": 1,
+            "nome": "lo",
+            "oper_status": 1.0,
+            "rx_mbps": 0.0,
+            "qualidade_taxa": "estimado_sem_marcador",
+            "tx_mbps": 0.0
+          },
+          {
+            "ifindex": 2,
+            "nome": "ether1",
+            "oper_status": 1.0,
+            "rx_mbps": 0.009674125174446619,
+            "qualidade_taxa": "estimado_sem_marcador",
+            "tx_mbps": 0.0010120647837522803
+          },
+          {
+            "ifindex": 3,
+            "nome": "ether2",
+            "oper_status": 1.0,
+            "rx_mbps": 0.005429036269685992,
+            "qualidade_taxa": "estimado_sem_marcador",
+            "tx_mbps": 0.009038810311901449
+          },
+          {
+            "ifindex": 4,
+            "nome": "ether3",
+            "oper_status": 2.0,
+            "rx_mbps": null,
+            "qualidade_taxa": "interface_nao_ativa",
+            "tx_mbps": null
+          },
+          {
+            "ifindex": 5,
+            "nome": "ether4",
+            "oper_status": 2.0,
+            "rx_mbps": null,
+            "qualidade_taxa": "interface_nao_ativa",
+            "tx_mbps": null
+          },
+          {
+            "ifindex": 6,
+            "nome": "ether5",
+            "oper_status": 2.0,
+            "rx_mbps": null,
+            "qualidade_taxa": "interface_nao_ativa",
+            "tx_mbps": null
+          },
+          {
+            "ifindex": 7,
+            "nome": "bridge",
+            "oper_status": 1.0,
+            "rx_mbps": 0.005301811395861494,
+            "qualidade_taxa": "estimado_sem_marcador",
+            "tx_mbps": 0.008145887578254523
+          }
+        ],
+        "diagnostico_ultimo_ciclo": "[\"ifCounterDiscontinuityTime indisponivel: taxas usam verificacao reduzida e recebem estimado_sem_marcador\"]"
+      }
+    },
+    {
+      "id": "E1",
+      "utc": "2026-10-03T12:08:06+00:00",
+      "origem": "IA",
+      "ferramenta": "consultar_cpu_memoria",
+      "argumentos": {},
+      "dados": {
+        "tem_dados": true,
+        "cpu_indices_pct": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0
+        },
+        "cpu_media_pct": 0.0,
+        "memoria_total_mib": 256.0,
+        "memoria_usada_mib": 58.57,
+        "memoria_pct": 22.88,
+        "uptime_ticks": 70471900,
+        "erro_cpu": null,
+        "qualidade": "ok"
+      }
+    },
+    {
+      "id": "E2",
+      "utc": "2026-10-03T12:08:07+00:00",
+      "origem": "IA",
+      "ferramenta": "listar_interfaces",
+      "argumentos": {},
+      "dados": {
+        "tem_dados": true,
+        "total": 7,
+        "interfaces_max16": [
+          {
+            "ifindex": 1,
+            "nome": "lo"
+          },
+          {
+            "ifindex": 2,
+            "nome": "ether1"
+          },
+          {
+            "ifindex": 3,
+            "nome": "ether2"
+          },
+          {
+            "ifindex": 4,
+            "nome": "ether3"
+          },
+          {
+            "ifindex": 5,
+            "nome": "ether4"
+          },
+          {
+            "ifindex": 6,
+            "nome": "ether5"
+          },
+          {
+            "ifindex": 7,
+            "nome": "bridge"
+          }
+        ]
+      }
+    },
+    {
+      "id": "E3",
+      "utc": "2026-10-03T12:08:09+00:00",
+      "origem": "IA",
+      "ferramenta": "consultar_interface",
+      "argumentos": {
+        "ifindex": 2
+      },
+      "dados": {
+        "tem_dados": true,
+        "ifindex": 2,
+        "nome": "ether1",
+        "admin_status": 1,
+        "oper_status": 1,
+        "intervalo_s": 2.026,
+        "rx_mbps": 0.0017,
+        "tx_mbps": 0.0,
+        "qualidade_taxa": "estimado_sem_marcador",
+        "contadores_acumulados": {
+          "rx_erros": 0,
+          "tx_erros": 0,
+          "rx_descartes": 0,
+          "tx_descartes": 0
+        },
+        "nota": "Erros e descartes sao totais acumulados, nao taxas nem prova isolada de incidente."
+      }
+    }
+  ]
+}

@@ -1,0 +1,420 @@
+[
+  {
+    "arquivo": "20261019T184857Z_858dfca5.json",
+    "sha256": "865de879c7bf7534583190f8a88b74b923d4d240c2fee687306475cacd6fef9b",
+    "monitoramento": {
+      "sinais": {
+        "interface:ether1": "admin=2;oper=2",
+        "interface:ether5": "admin=2;oper=opcional"
+      },
+      "eventos": [
+        {
+          "evento": "novo_episodio",
+          "chave": "interface:ether5",
+          "id": "e7669f82a4e1",
+          "estado": "admin=2;oper=opcional"
+        }
+      ],
+      "pendencias_para_analise": [
+        "interface:ether5"
+      ],
+      "perfil": {
+        "perfil": "RB750Gr3-monitoramento-supervisionado-v1",
+        "interfaces": {
+          "ether1": {
+            "admin_desejado": 1,
+            "link_exigido": true,
+            "propor_habilitacao": true
+          },
+          "ether2": {
+            "admin_desejado": 1,
+            "link_exigido": true,
+            "propor_habilitacao": false
+          },
+          "ether5": {
+            "admin_desejado": 1,
+            "link_exigido": false,
+            "propor_habilitacao": true
+          }
+        },
+        "reavaliacao_s": 600,
+        "repetir_alerta_s": 300,
+        "observacao_wan_habilitada": false
+      },
+      "incidentes": {
+        "interface:ether1": {
+          "id": "8b43215f728f",
+          "estado": "admin=2;oper=2",
+          "inicio_epoch": 1792435370.404673,
+          "analise_epoch": 1792435677.733935,
+          "resultado": "habilitacao_confirmada",
+          "alerta_epoch": 1792435738.0140603
+        },
+        "interface:ether5": {
+          "id": "e7669f82a4e1",
+          "estado": "admin=2;oper=opcional",
+          "inicio_epoch": 1792435738.0122359,
+          "analise_epoch": 1792435753.4808025,
+          "resultado": "intervalo_SET_300s",
+          "alerta_epoch": 1792435738.0140603,
+          "reavaliar_epoch": 1792435976.683454
+        }
+      }
+    },
+    "objetivo_operador": {
+      "tipo": "manter_estado_desejado",
+      "interfaces": {
+        "ether1": {
+          "admin_desejado": 1,
+          "link_exigido": true,
+          "propor_habilitacao": true
+        },
+        "ether2": {
+          "admin_desejado": 1,
+          "link_exigido": true,
+          "propor_habilitacao": false
+        },
+        "ether5": {
+          "admin_desejado": 1,
+          "link_exigido": false,
+          "propor_habilitacao": true
+        }
+      },
+      "interface": "ether5",
+      "admin_status_desejado": 1,
+      "link_exigido": false,
+      "nota": "Perfil configurado pelo operador; desvio descoberto por SNMP. Propor nao e executar. Exige revisao e consentimento posterior."
+    },
+    "resultado": null,
+    "set_eventos": []
+  },
+  {
+    "arquivo": "20261019T185013Z_f7e582c4.json",
+    "sha256": "e92c74bd86a85dbec397f4a632a6c5d2fe81e0737db800898912f9a45ce6980e",
+    "monitoramento": {
+      "sinais": {
+        "interface:ether1": "admin=2;oper=2",
+        "interface:ether5": "admin=2;oper=opcional"
+      },
+      "eventos": [],
+      "pendencias_para_analise": [],
+      "perfil": {
+        "perfil": "RB750Gr3-monitoramento-supervisionado-v1",
+        "interfaces": {
+          "ether1": {
+            "admin_desejado": 1,
+            "link_exigido": true,
+            "propor_habilitacao": true
+          },
+          "ether2": {
+            "admin_desejado": 1,
+            "link_exigido": true,
+            "propor_habilitacao": false
+          },
+          "ether5": {
+            "admin_desejado": 1,
+            "link_exigido": false,
+            "propor_habilitacao": true
+          }
+        },
+        "reavaliacao_s": 600,
+        "repetir_alerta_s": 300,
+        "observacao_wan_habilitada": false
+      },
+      "incidentes": {
+        "interface:ether1": {
+          "id": "8b43215f728f",
+          "estado": "admin=2;oper=2",
+          "inicio_epoch": 1792435370.404673,
+          "analise_epoch": 1792435677.733935,
+          "resultado": "habilitacao_confirmada",
+          "alerta_epoch": 1792435738.0140603
+        },
+        "interface:ether5": {
+          "id": "e7669f82a4e1",
+          "estado": "admin=2;oper=opcional",
+          "inicio_epoch": 1792435738.0122359,
+          "analise_epoch": 1792435753.4808025,
+          "resultado": "intervalo_SET_300s",
+          "alerta_epoch": 1792435738.0140603,
+          "reavaliar_epoch": 1792435976.683454
+        }
+      },
+      "adiamentos": [
+        {
+          "chave": "interface:ether1",
+          "resultado_anterior": "habilitacao_confirmada",
+          "proxima_analise_epoch": null,
+          "restante_s": null
+        },
+        {
+          "chave": "interface:ether5",
+          "resultado_anterior": "intervalo_SET_300s",
+          "proxima_analise_epoch": 1792435976.683454,
+          "restante_s": 163
+        }
+      ]
+    },
+    "objetivo_operador": null,
+    "resultado": null,
+    "set_eventos": []
+  },
+  {
+    "arquivo": "20261019T185113Z_6eb4f84e.json",
+    "sha256": "3e13e83c749996fb52d202027445ddac9407a86bbc0690ba5978f33500b22be8",
+    "monitoramento": {
+      "sinais": {
+        "interface:ether1": "admin=2;oper=2",
+        "interface:ether5": "admin=2;oper=opcional"
+      },
+      "eventos": [],
+      "pendencias_para_analise": [],
+      "perfil": {
+        "perfil": "RB750Gr3-monitoramento-supervisionado-v1",
+        "interfaces": {
+          "ether1": {
+            "admin_desejado": 1,
+            "link_exigido": true,
+            "propor_habilitacao": true
+          },
+          "ether2": {
+            "admin_desejado": 1,
+            "link_exigido": true,
+            "propor_habilitacao": false
+          },
+          "ether5": {
+            "admin_desejado": 1,
+            "link_exigido": false,
+            "propor_habilitacao": true
+          }
+        },
+        "reavaliacao_s": 600,
+        "repetir_alerta_s": 300,
+        "observacao_wan_habilitada": false
+      },
+      "incidentes": {
+        "interface:ether1": {
+          "id": "8b43215f728f",
+          "estado": "admin=2;oper=2",
+          "inicio_epoch": 1792435370.404673,
+          "analise_epoch": 1792435677.733935,
+          "resultado": "habilitacao_confirmada",
+          "alerta_epoch": 1792435738.0140603
+        },
+        "interface:ether5": {
+          "id": "e7669f82a4e1",
+          "estado": "admin=2;oper=opcional",
+          "inicio_epoch": 1792435738.0122359,
+          "analise_epoch": 1792435753.4808025,
+          "resultado": "intervalo_SET_300s",
+          "alerta_epoch": 1792435738.0140603,
+          "reavaliar_epoch": 1792435976.683454
+        }
+      },
+      "adiamentos": [
+        {
+          "chave": "interface:ether1",
+          "resultado_anterior": "habilitacao_confirmada",
+          "proxima_analise_epoch": null,
+          "restante_s": null
+        },
+        {
+          "chave": "interface:ether5",
+          "resultado_anterior": "intervalo_SET_300s",
+          "proxima_analise_epoch": 1792435976.683454,
+          "restante_s": 101
+        }
+      ]
+    },
+    "objetivo_operador": null,
+    "resultado": null,
+    "set_eventos": []
+  },
+  {
+    "arquivo": "20261019T185216Z_3c2c78b7.json",
+    "sha256": "13acf4daf3da06beb85546db02f6425c9ec669bd3f2caed394d2e2f44c9b9b6b",
+    "monitoramento": {
+      "sinais": {
+        "interface:ether1": "admin=2;oper=2",
+        "interface:ether5": "admin=2;oper=opcional"
+      },
+      "eventos": [],
+      "pendencias_para_analise": [],
+      "perfil": {
+        "perfil": "RB750Gr3-monitoramento-supervisionado-v1",
+        "interfaces": {
+          "ether1": {
+            "admin_desejado": 1,
+            "link_exigido": true,
+            "propor_habilitacao": true
+          },
+          "ether2": {
+            "admin_desejado": 1,
+            "link_exigido": true,
+            "propor_habilitacao": false
+          },
+          "ether5": {
+            "admin_desejado": 1,
+            "link_exigido": false,
+            "propor_habilitacao": true
+          }
+        },
+        "reavaliacao_s": 600,
+        "repetir_alerta_s": 300,
+        "observacao_wan_habilitada": false
+      },
+      "incidentes": {
+        "interface:ether1": {
+          "id": "8b43215f728f",
+          "estado": "admin=2;oper=2",
+          "inicio_epoch": 1792435370.404673,
+          "analise_epoch": 1792435677.733935,
+          "resultado": "habilitacao_confirmada",
+          "alerta_epoch": 1792435738.0140603
+        },
+        "interface:ether5": {
+          "id": "e7669f82a4e1",
+          "estado": "admin=2;oper=opcional",
+          "inicio_epoch": 1792435738.0122359,
+          "analise_epoch": 1792435753.4808025,
+          "resultado": "intervalo_SET_300s",
+          "alerta_epoch": 1792435738.0140603,
+          "reavaliar_epoch": 1792435976.683454
+        }
+      },
+      "adiamentos": [
+        {
+          "chave": "interface:ether1",
+          "resultado_anterior": "habilitacao_confirmada",
+          "proxima_analise_epoch": null,
+          "restante_s": null
+        },
+        {
+          "chave": "interface:ether5",
+          "resultado_anterior": "intervalo_SET_300s",
+          "proxima_analise_epoch": 1792435976.683454,
+          "restante_s": 41
+        }
+      ]
+    },
+    "objetivo_operador": null,
+    "resultado": null,
+    "set_eventos": []
+  },
+  {
+    "arquivo": "20261019T185316Z_26ba9ee1.json",
+    "sha256": "6493ea9377d5db563ca1c6a98b65cbdf25c3ee65a759b9f10c7193124a0ada9d",
+    "monitoramento": {
+      "sinais": {
+        "interface:ether1": "admin=2;oper=2",
+        "interface:ether5": "admin=2;oper=opcional"
+      },
+      "eventos": [],
+      "pendencias_para_analise": [
+        "interface:ether5"
+      ],
+      "perfil": {
+        "perfil": "RB750Gr3-monitoramento-supervisionado-v1",
+        "interfaces": {
+          "ether1": {
+            "admin_desejado": 1,
+            "link_exigido": true,
+            "propor_habilitacao": true
+          },
+          "ether2": {
+            "admin_desejado": 1,
+            "link_exigido": true,
+            "propor_habilitacao": false
+          },
+          "ether5": {
+            "admin_desejado": 1,
+            "link_exigido": false,
+            "propor_habilitacao": true
+          }
+        },
+        "reavaliacao_s": 600,
+        "repetir_alerta_s": 300,
+        "observacao_wan_habilitada": false
+      },
+      "incidentes": {
+        "interface:ether1": {
+          "id": "8b43215f728f",
+          "estado": "admin=2;oper=2",
+          "inicio_epoch": 1792435370.404673,
+          "analise_epoch": 1792435677.733935,
+          "resultado": "habilitacao_confirmada",
+          "alerta_epoch": 1792435738.0140603
+        },
+        "interface:ether5": {
+          "id": "e7669f82a4e1",
+          "estado": "admin=2;oper=opcional",
+          "inicio_epoch": 1792435738.0122359,
+          "analise_epoch": 1792436029.5610218,
+          "resultado": "habilitacao_confirmada",
+          "alerta_epoch": 1792435738.0140603
+        }
+      }
+    },
+    "objetivo_operador": {
+      "tipo": "manter_estado_desejado",
+      "interfaces": {
+        "ether1": {
+          "admin_desejado": 1,
+          "link_exigido": true,
+          "propor_habilitacao": true
+        },
+        "ether2": {
+          "admin_desejado": 1,
+          "link_exigido": true,
+          "propor_habilitacao": false
+        },
+        "ether5": {
+          "admin_desejado": 1,
+          "link_exigido": false,
+          "propor_habilitacao": true
+        }
+      },
+      "interface": "ether5",
+      "admin_status_desejado": 1,
+      "link_exigido": false,
+      "nota": "Perfil configurado pelo operador; desvio descoberto por SNMP. Propor nao e executar. Exige revisao e consentimento posterior."
+    },
+    "resultado": "habilitacao_confirmada",
+    "set_eventos": [
+      {
+        "utc": "2026-10-19T18:53:48.347+00:00",
+        "evento": "SET_a_enviar",
+        "interface": "ether5",
+        "ifindex": 6,
+        "oid": "1.3.6.1.2.1.2.2.1.7.6",
+        "valor": 1,
+        "tipo": "INTEGER",
+        "admin_anterior": 2,
+        "oper_anterior": 2,
+        "proposta_id": "f1d6ff5bcd6c7075a1cfcbf3b875f09f1dd4aa8351ec75628d4e1f7d3ad6db63",
+        "identidade_sha256": "b211aaa673054469ca5744bc144e77bfd4d14299bdd78dd3c25ae3f127539419"
+      },
+      {
+        "utc": "2026-10-19T18:53:48.476+00:00",
+        "evento": "resposta_SET",
+        "resultado": "aceito",
+        "detalhe": "noError"
+      },
+      {
+        "utc": "2026-10-19T18:53:49.554+00:00",
+        "evento": "GET_pos_SET",
+        "dados": {
+          "utc": "2026-10-19T18:53:49.554+00:00",
+          "ifindex": 6,
+          "descricao": "RouterOS RB750Gr3",
+          "uptime_ticks": 202506300,
+          "nome": "ether5",
+          "tipo": 6,
+          "mac": "D0:EA:11:0B:47:EA",
+          "admin_status": 1,
+          "oper_status": 2
+        }
+      }
+    ]
+  }
+]
